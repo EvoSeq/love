@@ -13,12 +13,21 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
             position: relative;
             min-height: 100vh;
             width: 100%;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
         }
         
         /* Animated Gradient Background */
@@ -418,7 +427,6 @@
             width: 10px;
             height: 10px;
             background: #FFD700;
-            position: absolute;
             animation: confettiFall 3s linear forwards;
             pointer-events: none;
         }
@@ -656,7 +664,7 @@
             transform: scale(0.98);
         }
         
-        /* Final Final Image Modal */
+        /* Ultimate Gift Modal */
         .ultimate-gift-modal-content {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
             backdrop-filter: blur(20px);
@@ -705,7 +713,11 @@
             50% { transform: scale(1.05); }
         }
         
-        /* Responsive - Tablets */
+        /* ========================================== */
+        /* RESPONSIVE BREAKPOINTS */
+        /* ========================================== */
+        
+        /* Tablets */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -729,7 +741,7 @@
             }
         }
         
-        /* Responsive - Small Phones */
+        /* Standard Smartphones */
         @media (max-width: 480px) {
             .container {
                 padding: 8px;
@@ -840,27 +852,31 @@
             }
             
             .final-gift-modal-content {
-                padding: 25px 15px;
+                padding: 20px 15px;
                 border-radius: 20px;
+                max-height: 96vh;
             }
             
             .final-gift-images {
-                gap: 12px;
-                margin-bottom: 20px;
+                gap: 10px;
+                margin-bottom: 12px;
             }
             
             .final-gift-images img {
-                max-height: 280px;
+                max-height: 180px;
             }
             
             .final-gift-text {
-                margin-bottom: 15px;
+                margin-bottom: 12px;
+                font-size: clamp(1.2rem, 4vw, 1.8rem);
+                line-height: 1.25;
             }
             
             .unlock-btn {
-                padding: 15px 35px;
-                margin-top: 15px;
+                padding: 14px 35px;
+                margin-top: 8px;
                 letter-spacing: 1px;
+                font-size: clamp(0.9rem, 3vw, 1.1rem);
             }
             
             .ultimate-gift-modal-content {
@@ -892,7 +908,7 @@
             }
         }
         
-        /* Responsive - Very Small Phones */
+        /* Very Small Phones */
         @media (max-width: 360px) {
             .glass-card {
                 padding: 20px 12px;
@@ -909,31 +925,45 @@
             .btn {
                 padding: 12px 25px;
             }
-        }
-        
-        /* Prevent horizontal scroll */
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        
-        /* Ensure images never overflow */
-        img {
-            max-width: 100%;
-            height: auto;
+            
+            .final-gift-modal-content {
+                padding: 15px 12px;
+            }
+            
+            .final-gift-images {
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            
+            .final-gift-images img {
+                max-height: 150px;
+            }
+            
+            .final-gift-text {
+                margin-bottom: 10px;
+                font-size: clamp(1.1rem, 4vw, 1.5rem);
+            }
+            
+            .unlock-btn {
+                padding: 12px 30px;
+                margin-top: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Rest of the HTML remains exactly the same -->
+    <!-- Animated Background -->
     <div class="background"></div>
+    
+    <!-- Floating Flowers -->
     <div class="particles" id="particles"></div>
     
+    <!-- Main Container -->
     <div class="container">
-        <div class="glass-card" id="mainCard">
-        </div>
+        <div class="glass-card" id="mainCard"></div>
     </div>
     
+    <!-- Feedback Modal -->
     <div class="modal" id="feedbackModal">
         <div class="modal-content">
             <div class="modal-title" id="modalTitle">🎉</div>
@@ -942,6 +972,7 @@
         </div>
     </div>
 
+    <!-- Image Modal for Question 3 & 4 -->
     <div class="modal" id="imageModal">
         <div class="image-modal-content">
             <img id="imageModalImg" src="" alt="Reveal">
@@ -950,6 +981,7 @@
         </div>
     </div>
 
+    <!-- Final Gift Modal -->
     <div class="modal" id="finalGiftModal">
         <div class="final-gift-modal-content">
             <div class="final-gift-images">
@@ -961,18 +993,23 @@
         </div>
     </div>
 
+    <!-- Ultimate Gift Modal -->
     <div class="modal" id="ultimateGiftModal">
         <div class="ultimate-gift-modal-content">
             <img id="ultimateGiftImg" src="" alt="Your Gift">
         </div>
     </div>
 
+    <!-- Background Music -->
     <audio id="backgroundMusic" loop>
         <source src="16106/im/song2.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Keep the exact same JavaScript code from your original file
+        // ==========================================
+        // CONFIGURATION
+        // ==========================================
+        
         const CONFIG = {
             girlfriendName: "Love Girl",
             aiName: "MAO-AI",
@@ -981,7 +1018,20 @@
             imageDirectory: "16106/im/"
         };
         
+        // ==========================================
+        // GLOBAL VARIABLES
+        // ==========================================
+        
         const backgroundMusic = document.getElementById('backgroundMusic');
+        let currentQuestion = 0;
+        let selectedOption = -1;
+        let isFollowUpQuestion = false;
+        let multiAnswerCount = 0;
+        let selectedAnswers = [];
+        
+        // ==========================================
+        // QUESTIONS DATA
+        // ==========================================
         
         const questions = [
             {
@@ -1058,7 +1108,9 @@
             }
         ];
         
-        // [Keep all the JavaScript functions exactly the same]
+        // ==========================================
+        // UTILITY FUNCTIONS
+        // ==========================================
         
         function typeWriter(element, text, speed = 50, callback = null) {
             let i = 0;
@@ -1085,12 +1137,6 @@
             
             type();
         }
-        
-        let currentQuestion = 0;
-        let selectedOption = -1;
-        let isFollowUpQuestion = false;
-        let multiAnswerCount = 0;
-        let selectedAnswers = [];
         
         function createParticles() {
             const particles = document.getElementById('particles');
@@ -1129,6 +1175,10 @@
             });
         }
         
+        // ==========================================
+        // WELCOME SCREEN
+        // ==========================================
+        
         function showWelcome() {
             const card = document.getElementById('mainCard');
             card.innerHTML = `
@@ -1149,6 +1199,10 @@
                 document.getElementById('startBtn').style.animation = 'fadeInBtn 0.5s forwards';
             });
         }
+        
+        // ==========================================
+        // QUIZ FLOW
+        // ==========================================
         
         function startQuiz() {
             startBackgroundMusic();
@@ -1254,6 +1308,10 @@
             `;
         }
         
+        // ==========================================
+        // SELECTION HANDLERS
+        // ==========================================
+        
         function selectOption(index) {
             selectedOption = index;
             const q = questions[currentQuestion];
@@ -1270,8 +1328,6 @@
         }
         
         function selectMultiOption(index) {
-            const q = questions[currentQuestion];
-            
             if (selectedAnswers.includes(index)) {
                 return;
             }
@@ -1281,6 +1337,10 @@
                 opt.classList.toggle('selected', i === index);
             });
         }
+        
+        // ==========================================
+        // ANSWER CHECKING
+        // ==========================================
         
         function checkAnswer() {
             if (selectedOption === -1) {
@@ -1325,6 +1385,23 @@
             }
         }
         
+        function checkFollowUpAnswer() {
+            if (selectedOption === -1) {
+                showModal('💭 Oops!', 'Please select an answer first!', false);
+                return;
+            }
+            
+            const q = questions[currentQuestion];
+            const followUp = q.followUp;
+            
+            if (selectedOption === followUp.correct) {
+                createConfetti();
+                showModal('🎉 Perfect!', followUp.correctMessage, true);
+            } else {
+                showModal('😅 Not Quite!', followUp.wrongMessage, false);
+            }
+        }
+        
         function handleMultiAnswer() {
             const q = questions[currentQuestion];
             
@@ -1343,22 +1420,9 @@
             }
         }
         
-        function checkFollowUpAnswer() {
-            if (selectedOption === -1) {
-                showModal('💭 Oops!', 'Please select an answer first!', false);
-                return;
-            }
-            
-            const q = questions[currentQuestion];
-            const followUp = q.followUp;
-            
-            if (selectedOption === followUp.correct) {
-                createConfetti();
-                showModal('🎉 Perfect!', followUp.correctMessage, true);
-            } else {
-                showModal('😅 Not Quite!', followUp.wrongMessage, false);
-            }
-        }
+        // ==========================================
+        // MODAL HANDLERS
+        // ==========================================
         
         function showModal(title, text, isCorrect, isMultiAnswer = false) {
             const modal = document.getElementById('feedbackModal');
@@ -1367,7 +1431,6 @@
             document.getElementById('modalText').textContent = text;
             
             modal.style.display = 'flex';
-            
             modal.dataset.isCorrect = isCorrect;
             modal.dataset.isMultiAnswer = isMultiAnswer;
         }
@@ -1403,7 +1466,6 @@
             textElement.textContent = text;
             
             modal.style.display = 'flex';
-            
             createConfetti();
         }
         
@@ -1450,6 +1512,10 @@
             setTimeout(createConfetti, 3000);
         }
         
+        // ==========================================
+        // FINAL REVEAL
+        // ==========================================
+        
         function showFinalReveal() {
             createConfetti();
             setTimeout(createConfetti, 1000);
@@ -1464,7 +1530,7 @@
                     
                     <div class="spa-emoji">💆‍♀️</div>
                     
-                    <h2 style="font-size: 2.5rem; color: #FFD700; margin: 20px 0;">
+                    <h2 style="font-size: clamp(1.8rem, 5vw, 2.5rem); color: #FFD700; margin: 20px 0; word-wrap: break-word;">
                         A LUXURIOUS SPA DAY!
                     </h2>
                     
@@ -1474,7 +1540,7 @@
                         <span>🎫 Open Your Spa Ticket 🎫</span>
                     </button>
                     
-                    <p style="color: rgba(255,255,255,0.8); margin-top: 30px; font-style: italic;" id="loveNote"></p>
+                    <p style="color: rgba(255,255,255,0.8); margin-top: 30px; font-style: italic; word-wrap: break-word;" id="loveNote"></p>
                 </div>
             `;
             
@@ -1500,6 +1566,10 @@
                 }
             }, 1000);
         }
+        
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
         
         window.onload = function() {
             createParticles();
