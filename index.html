@@ -599,8 +599,8 @@
         .final-gift-modal-content {
             background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 20, 147, 0.2));
             backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 25px 20px;
+            border-radius: 20px;
+            padding: 15px;
             max-width: 1000px;
             width: 100%;
             text-align: center;
@@ -609,7 +609,7 @@
             position: relative;
             box-shadow: 0 0 50px rgba(255, 105, 180, 0.4);
             margin: auto;
-            max-height: 95vh;
+            max-height: 98vh;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -618,25 +618,25 @@
         .final-gift-images {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 12px;
+            gap: 8px;
+            margin-bottom: 8px;
             flex-shrink: 1;
         }
         
         .final-gift-images img {
             width: 100%;
-            max-height: 200px;
+            max-height: 120px;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 10px;
         }
         
         .final-gift-text {
-            font-size: clamp(1.3rem, 4vw, 2.5rem);
+            font-size: clamp(1rem, 3.5vw, 2.5rem);
             font-weight: 900;
             color: #FFD700;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 15px;
-            line-height: 1.3;
+            margin-bottom: 8px;
+            line-height: 1.2;
             white-space: pre-line;
             word-wrap: break-word;
             flex-shrink: 0;
@@ -646,17 +646,17 @@
             background: linear-gradient(135deg, #FF1493, #FF69B4);
             border: none;
             border-radius: 50px;
-            padding: 15px 40px;
-            font-size: clamp(0.95rem, 3vw, 1.3rem);
+            padding: 12px 30px;
+            font-size: clamp(0.85rem, 2.5vw, 1.3rem);
             font-weight: 700;
             color: #fff;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 10px;
-            min-height: 48px;
+            letter-spacing: 1px;
+            margin-top: 6px;
+            min-height: 44px;
             flex-shrink: 0;
         }
         
@@ -852,31 +852,31 @@
             }
             
             .final-gift-modal-content {
-                padding: 20px 15px;
-                border-radius: 20px;
-                max-height: 96vh;
+                padding: 12px;
+                border-radius: 15px;
             }
             
             .final-gift-images {
-                gap: 8px;
-                margin-bottom: 10px;
+                gap: 6px;
+                margin-bottom: 6px;
             }
             
             .final-gift-images img {
-                max-height: 140px;
+                max-height: 100px;
             }
             
             .final-gift-text {
-                margin-bottom: 12px;
-                font-size: clamp(1.2rem, 4vw, 1.8rem);
-                line-height: 1.25;
+                margin-bottom: 6px;
+                font-size: clamp(0.95rem, 3.5vw, 1.5rem);
+                line-height: 1.15;
             }
             
             .unlock-btn {
-                padding: 14px 35px;
-                margin-top: 8px;
-                letter-spacing: 1px;
-                font-size: clamp(0.9rem, 3vw, 1.1rem);
+                padding: 10px 25px;
+                margin-top: 4px;
+                letter-spacing: 0.5px;
+                font-size: clamp(0.8rem, 2.5vw, 1rem);
+                min-height: 42px;
             }
             
             .ultimate-gift-modal-content {
@@ -927,26 +927,28 @@
             }
             
             .final-gift-modal-content {
-                padding: 15px 12px;
+                padding: 10px;
             }
             
             .final-gift-images {
-                gap: 6px;
-                margin-bottom: 8px;
+                gap: 5px;
+                margin-bottom: 5px;
             }
             
             .final-gift-images img {
-                max-height: 120px;
+                max-height: 85px;
             }
             
             .final-gift-text {
-                margin-bottom: 10px;
-                font-size: clamp(1.1rem, 4vw, 1.5rem);
+                margin-bottom: 5px;
+                font-size: clamp(0.9rem, 3vw, 1.3rem);
+                line-height: 1.1;
             }
             
             .unlock-btn {
-                padding: 12px 30px;
-                margin-top: 8px;
+                padding: 9px 22px;
+                margin-top: 3px;
+                min-height: 40px;
             }
         }
     </style>
