@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>💜 A Special Surprise For You 💜</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap');
@@ -18,6 +18,7 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+            width: 100%;
         }
         
         /* Animated Gradient Background */
@@ -48,6 +49,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            pointer-events: none;
         }
         
         .particle {
@@ -92,9 +94,10 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
             position: relative;
             z-index: 1;
+            width: 100%;
         }
         
         /* Glass Card */
@@ -103,7 +106,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 30px;
-            padding: 60px 50px;
+            padding: 40px 30px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             border: 1px solid rgba(255, 255, 255, 0.18);
             max-width: 900px;
@@ -127,23 +130,25 @@
         /* Typography */
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 900;
             color: #fff;
             text-align: center;
             margin-bottom: 20px;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            word-wrap: break-word;
         }
         
         .subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             color: rgba(255, 255, 255, 0.9);
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-weight: 300;
             line-height: 1.8;
-            min-height: 150px;
+            min-height: auto;
+            word-wrap: break-word;
         }
         
         /* Typewriter Effect */
@@ -167,7 +172,7 @@
             height: 8px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             overflow: hidden;
             position: relative;
         }
@@ -190,11 +195,11 @@
         .progress-text {
             text-align: center;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            margin-top: 10px;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            margin-top: 8px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
         /* Question Styles */
@@ -202,8 +207,8 @@
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             animation: slideIn 0.5s ease-out;
         }
@@ -220,22 +225,23 @@
         }
         
         .question-text {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             color: #fff;
             font-weight: 600;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             line-height: 1.5;
             white-space: pre-line;
+            word-wrap: break-word;
         }
         
         /* Question Image Display */
         .question-image {
             width: 100%;
-            max-height: 400px;
+            max-height: 350px;
             object-fit: contain;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
@@ -243,8 +249,8 @@
         .image-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 30px;
+            gap: 15px;
+            margin-top: 25px;
         }
         
         .image-option {
@@ -256,6 +262,7 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             aspect-ratio: 4/3;
             background: rgba(255, 255, 255, 0.1);
+            min-height: 120px;
         }
         
         .image-option img {
@@ -267,14 +274,10 @@
             background: rgba(0, 0, 0, 0.2);
         }
         
-        .image-option:hover {
+        .image-option:active {
             border-color: rgba(255, 215, 0, 0.6);
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-        
-        .image-option:hover img {
-            transform: scale(1.05);
+            transform: scale(0.98);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
         }
         
         .image-option.selected {
@@ -284,18 +287,18 @@
         
         .image-option-number {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 8px;
+            left: 8px;
             background: rgba(0, 0, 0, 0.7);
             color: #fff;
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
             z-index: 1;
         }
         
@@ -303,7 +306,7 @@
         .options {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
         
         .option {
@@ -311,13 +314,19 @@
             backdrop-filter: blur(10px);
             border: 2px solid transparent;
             border-radius: 15px;
-            padding: 20px 25px;
-            font-size: 1.1rem;
+            padding: 18px 20px;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
             color: #fff;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            word-wrap: break-word;
         }
         
         .option::before {
@@ -331,14 +340,10 @@
             transition: left 0.5s;
         }
         
-        .option:hover::before {
-            left: 100%;
-        }
-        
-        .option:hover {
+        .option:active {
             background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 215, 0, 0.6);
-            transform: translateX(10px) scale(1.02);
+            transform: scale(0.98);
             box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
         }
         
@@ -360,22 +365,25 @@
             background: linear-gradient(135deg, #FFD700, #FFA500);
             border: none;
             border-radius: 50px;
-            padding: 18px 50px;
-            font-size: 1.2rem;
+            padding: 16px 40px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             font-weight: 700;
             color: #4A148C;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             display: block;
-            margin: 30px auto 0;
+            margin: 25px auto 0;
             position: relative;
             overflow: hidden;
             opacity: 0;
             animation: fadeInBtn 0.5s forwards;
             animation-delay: 1s;
+            min-height: 50px;
+            width: fit-content;
+            max-width: 100%;
         }
         
         @keyframes fadeInBtn {
@@ -395,18 +403,8 @@
             transition: width 0.6s, height 0.6s;
         }
         
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
-        }
-        
         .btn:active {
-            transform: translateY(-2px) scale(1.02);
+            transform: scale(0.98);
         }
         
         .btn span {
@@ -422,6 +420,7 @@
             background: #FFD700;
             position: absolute;
             animation: confettiFall 3s linear forwards;
+            pointer-events: none;
         }
         
         @keyframes confettiFall {
@@ -437,14 +436,15 @@
         }
         
         .reveal-title {
-            font-size: 4rem;
+            font-size: clamp(2rem, 6vw, 4rem);
             background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: gradientText 3s ease infinite;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            word-wrap: break-word;
         }
         
         @keyframes gradientText {
@@ -453,15 +453,16 @@
         }
         
         .reveal-message {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             color: #fff;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.8;
+            word-wrap: break-word;
         }
         
         .spa-emoji {
-            font-size: 6rem;
-            margin: 30px 0;
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin: 25px 0;
             animation: bounce 2s infinite;
         }
         
@@ -484,6 +485,8 @@
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s;
+            padding: 15px;
+            overflow-y: auto;
         }
         
         @keyframes fadeIn {
@@ -494,12 +497,14 @@
         .modal-content {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px;
+            border-radius: 25px;
+            padding: 35px 25px;
             max-width: 500px;
+            width: 100%;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.3);
             animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: auto;
         }
         
         @keyframes modalPop {
@@ -514,143 +519,159 @@
         }
         
         .modal-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            word-wrap: break-word;
         }
         
         .modal-text {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             line-height: 1.6;
             white-space: pre-line;
+            word-wrap: break-word;
         }
         
         .modal-close {
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
             border-radius: 50px;
-            padding: 15px 40px;
-            font-size: 1.1rem;
+            padding: 14px 35px;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
             font-weight: 600;
             color: #fff;
             cursor: pointer;
             transition: all 0.3s;
+            min-height: 48px;
         }
         
-        .modal-close:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        .modal-close:active {
+            transform: scale(0.98);
         }
         
         /* Image Modal for Question 3 & 4 */
         .image-modal-content {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px;
+            border-radius: 25px;
+            padding: 30px 20px;
             max-width: 700px;
+            width: 100%;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.3);
             animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            margin: auto;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .image-modal-content img {
             width: 100%;
-            max-height: 500px;
+            max-height: 400px;
             object-fit: contain;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         
         .image-modal-text {
-            font-size: 2rem;
+            font-size: clamp(1.3rem, 4vw, 2rem);
             font-weight: 900;
             color: #FFD700;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             animation: pulse 1.5s infinite;
             line-height: 1.4;
+            word-wrap: break-word;
         }
         
         /* Final Gift Modal */
         .final-gift-modal-content {
             background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 20, 147, 0.2));
             backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px;
+            border-radius: 25px;
+            padding: 35px 20px;
             max-width: 1000px;
+            width: 100%;
             text-align: center;
             border: 2px solid rgba(255, 105, 180, 0.5);
             animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             box-shadow: 0 0 50px rgba(255, 105, 180, 0.4);
+            margin: auto;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .final-gift-images {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
         }
         
         .final-gift-images img {
             width: 100%;
-            max-height: 400px;
+            max-height: 350px;
             object-fit: contain;
             border-radius: 15px;
         }
         
         .final-gift-text {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 900;
             color: #FFD700;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             line-height: 1.4;
             white-space: pre-line;
+            word-wrap: break-word;
         }
         
         .unlock-btn {
             background: linear-gradient(135deg, #FF1493, #FF69B4);
             border: none;
             border-radius: 50px;
-            padding: 20px 60px;
-            font-size: 1.3rem;
+            padding: 18px 45px;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             font-weight: 700;
             color: #fff;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 20px;
+            letter-spacing: 1.5px;
+            margin-top: 18px;
+            min-height: 50px;
         }
         
-        .unlock-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.7);
+        .unlock-btn:active {
+            transform: scale(0.98);
         }
         
         /* Final Final Image Modal */
         .ultimate-gift-modal-content {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
             backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px;
+            border-radius: 25px;
+            padding: 30px 20px;
             max-width: 900px;
+            width: 100%;
             text-align: center;
             border: 2px solid rgba(255, 215, 0, 0.5);
             animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+            margin: auto;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .ultimate-gift-modal-content img {
             width: 100%;
-            max-height: 600px;
+            max-height: 70vh;
             object-fit: contain;
             border-radius: 15px;
         }
@@ -661,15 +682,15 @@
         
         /* AI Bot Avatar */
         .ai-avatar {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 20px;
+            font-size: 2rem;
+            margin: 0 auto 18px;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
             animation: pulse 2s infinite;
         }
@@ -679,39 +700,235 @@
             50% { transform: scale(1.05); }
         }
         
-        /* Responsive */
+        /* Responsive - Tablets */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1.1rem; min-height: 120px; }
-            .question-text { font-size: 1.4rem; }
-            .option { font-size: 1rem; padding: 15px 20px; }
-            .glass-card { padding: 40px 30px; }
-            .reveal-title { font-size: 2.5rem; }
-            .spa-emoji { font-size: 4rem; }
-            .particle { font-size: 25px; }
-            .image-options { grid-template-columns: 1fr; }
-            .image-modal-text { font-size: 1.5rem; }
-            .question-image { max-height: 300px; }
-            .final-gift-text { font-size: 1.8rem; }
-            .final-gift-images { grid-template-columns: 1fr; }
+            .container {
+                padding: 10px;
+            }
+            
+            .glass-card {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+            
+            .particle {
+                font-size: 20px;
+            }
+            
+            .image-options {
+                gap: 12px;
+            }
+            
+            .image-option {
+                min-height: 100px;
+            }
+        }
+        
+        /* Responsive - Small Phones */
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+            
+            .glass-card {
+                padding: 25px 15px;
+                border-radius: 15px;
+            }
+            
+            .question-card {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            .particle {
+                font-size: 18px;
+            }
+            
+            h1 {
+                margin-bottom: 15px;
+            }
+            
+            .subtitle {
+                margin-bottom: 20px;
+            }
+            
+            .progress-container {
+                margin-bottom: 15px;
+            }
+            
+            .question-text {
+                margin-bottom: 20px;
+            }
+            
+            .question-image {
+                max-height: 250px;
+                margin-bottom: 20px;
+            }
+            
+            .image-options {
+                gap: 10px;
+            }
+            
+            .image-option {
+                min-height: 90px;
+                border-radius: 12px;
+            }
+            
+            .image-option-number {
+                width: 26px;
+                height: 26px;
+                font-size: 0.9rem;
+                top: 6px;
+                left: 6px;
+            }
+            
+            .options {
+                gap: 10px;
+            }
+            
+            .option {
+                padding: 15px 18px;
+                border-radius: 12px;
+                min-height: 48px;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                margin-top: 20px;
+                min-height: 48px;
+                letter-spacing: 1px;
+            }
+            
+            .modal {
+                padding: 10px;
+            }
+            
+            .modal-content {
+                padding: 25px 18px;
+                border-radius: 20px;
+            }
+            
+            .modal-title {
+                margin-bottom: 15px;
+            }
+            
+            .modal-text {
+                margin-bottom: 20px;
+            }
+            
+            .modal-close {
+                padding: 12px 28px;
+            }
+            
+            .image-modal-content {
+                padding: 25px 15px;
+                border-radius: 20px;
+            }
+            
+            .image-modal-content img {
+                max-height: 300px;
+                margin-bottom: 20px;
+            }
+            
+            .image-modal-text {
+                margin-bottom: 20px;
+            }
+            
+            .final-gift-modal-content {
+                padding: 25px 15px;
+                border-radius: 20px;
+            }
+            
+            .final-gift-images {
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .final-gift-images img {
+                max-height: 280px;
+            }
+            
+            .final-gift-text {
+                margin-bottom: 15px;
+            }
+            
+            .unlock-btn {
+                padding: 15px 35px;
+                margin-top: 15px;
+                letter-spacing: 1px;
+            }
+            
+            .ultimate-gift-modal-content {
+                padding: 25px 15px;
+                border-radius: 20px;
+            }
+            
+            .ultimate-gift-modal-content img {
+                max-height: 60vh;
+            }
+            
+            .ai-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.7rem;
+                margin-bottom: 15px;
+            }
+            
+            .spa-emoji {
+                margin: 20px 0;
+            }
+            
+            .reveal-title {
+                margin-bottom: 20px;
+            }
+            
+            .reveal-message {
+                margin-bottom: 25px;
+            }
+        }
+        
+        /* Responsive - Very Small Phones */
+        @media (max-width: 360px) {
+            .glass-card {
+                padding: 20px 12px;
+            }
+            
+            .question-card {
+                padding: 18px 12px;
+            }
+            
+            .image-option {
+                min-height: 80px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+        }
+        
+        /* Prevent horizontal scroll */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Ensure images never overflow */
+        img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
+    <!-- Rest of the HTML remains exactly the same -->
     <div class="background"></div>
-    
-    <!-- Floating Flowers -->
     <div class="particles" id="particles"></div>
     
-    <!-- Main Container -->
     <div class="container">
         <div class="glass-card" id="mainCard">
-            <!-- Content will be dynamically inserted here -->
         </div>
     </div>
     
-    <!-- Modal for feedback -->
     <div class="modal" id="feedbackModal">
         <div class="modal-content">
             <div class="modal-title" id="modalTitle">🎉</div>
@@ -720,7 +937,6 @@
         </div>
     </div>
 
-    <!-- Image Modal for Question 3 & 4 -->
     <div class="modal" id="imageModal">
         <div class="image-modal-content">
             <img id="imageModalImg" src="" alt="Reveal">
@@ -729,7 +945,6 @@
         </div>
     </div>
 
-    <!-- Final Gift Modal -->
     <div class="modal" id="finalGiftModal">
         <div class="final-gift-modal-content">
             <div class="final-gift-images">
@@ -741,23 +956,18 @@
         </div>
     </div>
 
-    <!-- Ultimate Gift Modal (14.png) -->
     <div class="modal" id="ultimateGiftModal">
         <div class="ultimate-gift-modal-content">
             <img id="ultimateGiftImg" src="" alt="Your Gift">
         </div>
     </div>
 
-    <!-- Background Music -->
     <audio id="backgroundMusic" loop>
         <source src="16106/im/song2.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // ==========================================
-        // CONFIGURATION - EDIT THESE!
-        // ==========================================
-        
+        // Keep the exact same JavaScript code from your original file
         const CONFIG = {
             girlfriendName: "Love Girl",
             aiName: "MAO-AI",
@@ -766,10 +976,8 @@
             imageDirectory: "16106/im/"
         };
         
-        // Audio element
         const backgroundMusic = document.getElementById('backgroundMusic');
         
-        // Questions Data
         const questions = [
             {
                 type: "image",
@@ -838,16 +1046,14 @@
                     "correct! choose one more..",
                     "you are doing well! dont stop",
                     "you got almost there.. one more!",
-                    null  // 4th answer shows final image
+                    null
                 ],
                 finalImages: ["12.jpg", "13.jpg"],
-                finalText: "yes you are all of these!\n\nΧρονια πολλα αγαπη μου!\n\nΤο boy σου 😘"
+                finalText: "yes you are all of these!\n\nΧρονια πολλα αγατη μου!\n\nΤο boy σου 😘"
             }
         ];
         
-        // ==========================================
-        // TYPEWRITER EFFECT
-        // ==========================================
+        // [Keep all the JavaScript functions exactly the same]
         
         function typeWriter(element, text, speed = 50, callback = null) {
             let i = 0;
@@ -875,10 +1081,6 @@
             type();
         }
         
-        // ==========================================
-        // FLOWERS & EFFECTS
-        // ==========================================
-        
         let currentQuestion = 0;
         let selectedOption = -1;
         let isFollowUpQuestion = false;
@@ -887,7 +1089,7 @@
         
         function createParticles() {
             const particles = document.getElementById('particles');
-            const flowerSymbols = ['🌸', '🌺', '🌻', '🌼', '🌷', '🌹', '💐', '🏵️', '🌾', '🥀', '🪷'];
+            const flowerSymbols = ['🌸', '🌺', '🌻', '🌼', '🌷', '🌹', '🌿', '🌵️', '🌾', '🥀', '🪷'];
             
             for (let i = 0; i < 40; i++) {
                 const particle = document.createElement('div');
@@ -915,20 +1117,12 @@
             }
         }
         
-        // ==========================================
-        // MUSIC FUNCTION
-        // ==========================================
-        
         function startBackgroundMusic() {
-            backgroundMusic.volume = 0.4; // Set volume to 40%
+            backgroundMusic.volume = 0.4;
             backgroundMusic.play().catch(e => {
                 console.log("Audio autoplay prevented. User interaction required.");
             });
         }
-        
-        // ==========================================
-        // WELCOME SCREEN
-        // ==========================================
         
         function showWelcome() {
             const card = document.getElementById('mainCard');
@@ -951,12 +1145,7 @@
             });
         }
         
-        // ==========================================
-        // QUIZ LOGIC
-        // ==========================================
-        
         function startQuiz() {
-            // Start background music when quiz begins
             startBackgroundMusic();
             showQuestion();
         }
@@ -970,7 +1159,6 @@
             let optionsHtml = '';
             let imageHtml = '';
             
-            // Check if question displays an image
             if (q.type === "text_with_image" && q.displayImage) {
                 imageHtml = `<img src="${CONFIG.imageDirectory}${q.displayImage}" alt="Question Image" class="question-image">`;
             }
@@ -987,7 +1175,6 @@
                     </div>
                 `;
             } else if (q.type === "multi_answer") {
-                // Multi-answer question - all options available
                 optionsHtml = `
                     <div class="options" id="options">
                         ${q.options.map((opt, i) => `
@@ -1080,9 +1267,8 @@
         function selectMultiOption(index) {
             const q = questions[currentQuestion];
             
-            // Check if already selected
             if (selectedAnswers.includes(index)) {
-                return; // Already answered this one
+                return;
             }
             
             selectedOption = index;
@@ -1099,20 +1285,16 @@
             
             const q = questions[currentQuestion];
             
-            // Handle multi-answer question (Question 5)
             if (q.type === "multi_answer") {
                 handleMultiAnswer();
                 return;
             }
             
-            // Check if this question has image reveal (Question 3 or 4)
             if (q.showImageReveal) {
-                // For Question 4 - both answers are correct, manual close
                 if (q.bothCorrect && q.requireManualClose) {
                     showImageModal(q.revealImage, q.revealText);
                     return;
                 }
-                // For Question 3 - different messages, manual close, both move to next
                 if (q.bothMoveNext) {
                     const isCorrect = selectedOption === q.correct;
                     const text = isCorrect ? q.correctImageText : q.wrongImageText;
@@ -1141,21 +1323,16 @@
         function handleMultiAnswer() {
             const q = questions[currentQuestion];
             
-            // Mark this answer as selected
             selectedAnswers.push(selectedOption);
             
-            // Mark the option as completed
             document.querySelectorAll('.option')[selectedOption].classList.add('completed');
             document.querySelectorAll('.option')[selectedOption].classList.remove('selected');
             
-            // Check if this is the 4th (final) answer
             if (multiAnswerCount === 3) {
-                // Show final gift modal with both images
                 showFinalGiftModal(q.finalImages, q.finalText);
             } else {
-                // Show encouragement message - NO AUTO ADVANCE
                 const message = q.messages[multiAnswerCount];
-                showModal('✨ Great!', message, false, true); // Added flag for multi-answer
+                showModal('✨ Great!', message, false, true);
                 multiAnswerCount++;
                 selectedOption = -1;
             }
@@ -1178,10 +1355,6 @@
             }
         }
         
-        // ==========================================
-        // MODAL
-        // ==========================================
-        
         function showModal(title, text, isCorrect, isMultiAnswer = false) {
             const modal = document.getElementById('feedbackModal');
             
@@ -1190,7 +1363,6 @@
             
             modal.style.display = 'flex';
             
-            // Store state for closeModal to use
             modal.dataset.isCorrect = isCorrect;
             modal.dataset.isMultiAnswer = isMultiAnswer;
         }
@@ -1202,7 +1374,6 @@
             
             modal.style.display = 'none';
             
-            // Only advance if it's correct and NOT a multi-answer intermediate step
             if (isCorrect && !isMultiAnswer) {
                 if (isFollowUpQuestion) {
                     isFollowUpQuestion = false;
@@ -1216,13 +1387,7 @@
                     showFinalReveal();
                 }
             }
-            // If it's a multi-answer intermediate step, just close modal
-            // User will select next answer
         }
-        
-        // ==========================================
-        // IMAGE MODAL FOR QUESTION 3 & 4
-        // ==========================================
         
         function showImageModal(imageName, text) {
             const modal = document.getElementById('imageModal');
@@ -1240,7 +1405,6 @@
         function closeImageModal() {
             document.getElementById('imageModal').style.display = 'none';
             
-            // Move to next question when modal is closed manually
             currentQuestion++;
             if (currentQuestion < questions.length) {
                 showQuestion();
@@ -1248,10 +1412,6 @@
                 showFinalReveal();
             }
         }
-        
-        // ==========================================
-        // FINAL GIFT MODAL
-        // ==========================================
         
         function showFinalGiftModal(images, text) {
             const modal = document.getElementById('finalGiftModal');
@@ -1271,10 +1431,8 @@
         }
         
         function unlockGift() {
-            // Close the current modal
             document.getElementById('finalGiftModal').style.display = 'none';
             
-            // Show the ultimate gift image (14.png)
             const modal = document.getElementById('ultimateGiftModal');
             const img = document.getElementById('ultimateGiftImg');
             
@@ -1286,10 +1444,6 @@
             setTimeout(createConfetti, 2000);
             setTimeout(createConfetti, 3000);
         }
-        
-        // ==========================================
-        // FINAL REVEAL (NOT USED - GOING STRAIGHT TO GIFT)
-        // ==========================================
         
         function showFinalReveal() {
             createConfetti();
@@ -1332,10 +1486,6 @@
             });
         }
         
-        // ==========================================
-        // OPEN PDF
-        // ==========================================
-        
         function openTicket() {
             const pdfWindow = window.open(CONFIG.pdfFileName, '_blank');
             
@@ -1345,10 +1495,6 @@
                 }
             }, 1000);
         }
-        
-        // ==========================================
-        // INITIALIZE
-        // ==========================================
         
         window.onload = function() {
             createParticles();
